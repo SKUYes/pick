@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+
+    <th:block th:fragment="content">
+        <h2 class="mt-4">마이페이지 - 수정</h2>
+
+        <form th:action="@{/member/update}" th:object="${memberReqDto}" th:method="post">
+            <table>
+                <thead></thead>
+                <tbody>
+                <tr>
+                    <td>아이디:</td>
+                    <td><input type="text" class="form-control-sm" name="identity" th:value="${session.loginMember.identity}" readonly>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>비밀번호:</td>
+                    <td><input type="password" class="form-control-sm" name="password" placeholder="비밀번호를 입력하세요"
+                               required></td>
+                </tr>
+
+                <tr>
+                    <td>이름:</td>
+                    <td><input type="text" class="form-control-sm" name="name" th:value="${session.loginMember.name}" required></td>
+                </tr>
+
+                <tr>
+                    <td>닉네임:</td>
+                    <td><input type="text" class="form-control-sm" name="nickname" th:value="${session.loginMember.nickname}" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>성별:</td>
+                    <td>
+                        <input type="radio" name="gender" value="남성" required> 남성
+                        <input type="radio" name="gender" value="여성" required> 여성
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>생년월일:</td>
+                    <td><input type="date" class="form-control-sm" name="birthDate" th:value="${session.loginMember.birthDate}" required></td>
+                </tr>
+
+                <tr>
+                    <td>태그:</td>
+                    <td><input type="number" class="form-control-sm" name="tagId" th:value="${session.loginMember.tagId}" required></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" type="submit">정보수정</button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </form>
+
+    </th:block>
+
+</th:block>
+
+<script>
+    $(document).ready(function () {
+        $("form").on("submit", function (event) {
+            event.preventDefault(); // 폼 제출을 방지하여 기본 동작을 중단합니다.
+
+            // Ajax를 사용하여 서버에 요청을 보냅니다.
+            $.ajax({
+                url: $(this).attr("action"),
+                method: "POST",
+                data: $(this).serialize(),
+                success: function (response) {
+                    // 성공적인 응답 처리
+                    alert("회원정보 수정이 완료되었습니다.");
+                    // 홈 페이지로 리디렉션
+                    window.location.href = "/home";
+                },
+                error: function (xhr, status, error) {
+                    if (xhr.status === 500) {
+                        // 500 에러가 발생한 경우 경고창을 띄우고 페이지를 리로드합니다.
+                        alert(error);
+                        // $("input[name='identity']").val("");
+                        // $("input[name='identity']").focus();
+                        return;
+                    }
+                }
+            });
+        });
+    });
+</script>

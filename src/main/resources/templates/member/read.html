@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- 여기에 필요한 스타일이나 스크립트 태그 추가 -->
+</head>
+
+<body>
+
+<h2>회원 정보</h2>
+
+<!-- member 객체에서 필요한 정보를 Thymeleaf를 통해 표시 -->
+<p>ID: <span th:text="${member.identity}"></span></p>
+<p>이름: <span th:text="${member.name}"></span></p>
+<p>닉네임: <span th:text="${member.nickname}"></span></p>
+<p>성별: <span th:text="${member.gender}"></span></p>
+<p>생년월일: <span th:text="${#temporals.format(member.birthDate, 'yyyy-MM-dd')}"></span></p>
+<p>태그 ID: <span th:text="${member.tagId}"></span></p>
+<p>피부 유형: <span th:text="${member.memberSkinType}"></span></p>
+<p>피부 색상: <span th:text="${member.memberSkinColor}"></span></p>
+<p>피부 P컬러: <span th:text="${member.memberPcolor}"></span></p>
+<!-- 기타 필요한 정보들을 추가 -->
+
+<!-- 추가적인 수정 또는 삭제 기능을 위한 버튼이나 링크 등을 추가할 수 있음 -->
+
+</body>
+
+</html>
