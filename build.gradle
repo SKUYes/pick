@@ -29,6 +29,10 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    implementation 'org.webjars:bootstrap:5.3.0'
+
+    implementation 'javax.servlet:jstl:1.2'
+
     compileOnly 'org.projectlombok:lombok'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

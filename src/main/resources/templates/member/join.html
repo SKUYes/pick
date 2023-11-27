@@ -1,70 +1,166 @@
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
 
-<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Register</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link th:href="@{/images/favicon.svg}" rel="shortcut icon" type="image/x-icon">
 
-    <th:block th:fragment="content">
-        <h2 class="mt-4">회원가입</h2>
+    <!-- ========================= CSS here ========================= -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/LineIcons.3.0.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/tiny-slider.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/glightbox.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
 
-        <form th:action="@{/member/join}" th:object="${memberReqDto}" th:method="post">
-            <table>
-                <thead></thead>
-                <tbody>
-                <tr>
-                    <td>아이디:</td>
-                    <td><input type="text" class="form-control-sm" name="identity" placeholder="아이디를 입력하세요" required></td>
-                </tr>
+</head>
 
-                <tr>
-                    <td>비밀번호:</td>
-                    <td><input type="password" class="form-control-sm" name="password" placeholder="비밀번호를 입력하세요" required></td>
-                </tr>
+<body>
+<th:block th:replace="~{/layout/menu :: setContent(~{this::content} )}">
 
-                <tr>
-                    <td>이름:</td>
-                    <td><input type="text" class="form-control-sm" name="name" placeholder="이름을 입력하세요" required></td>
-                </tr>
+    <th:block th:fragment="content"/>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+    </p>
+    <![endif]-->
 
-                <tr>
-                    <td>닉네임:</td>
-                    <td><input type="text" class="form-control-sm" name="nickname" placeholder="닉네임을 입력하세요" required></td>
-                </tr>
-
-                <tr>
-                    <td>성별:</td>
-                    <td>
-                        <input type="radio" name="gender" value="남성" required> 남성
-                        <input type="radio" name="gender" value="여성" required> 여성
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>생년월일:</td>
-                    <td><input type="date" class="form-control-sm" name="birthDate" required></td>
-                </tr>
-
-                <tr>
-                    <td>태그:</td>
-                    <td><input type="number" class="form-control-sm" name="tagId" placeholder="태그를 입력하세요" required></td>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <button class="btn btn-sm btn-primary" type="submit">가입</button>
-                        <button class="btn btn-sm btn-danger" type="reset">초기화</button>
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-        </form>
-
-    </th:block>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- /End Preloader -->
 
 </th:block>
 
+<!-- Start Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="breadcrumbs-content">
+                    <h1 class="page-title">Registration</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <ul class="breadcrumb-nav">
+                    <li><a href="/home"><i class="lni lni-home"></i> Home</a></li>
+                    <li>Registration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+
+<!-- Start Account Register Area -->
+<div class="account-login section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+                <div class="register-form">
+                    <div class="title">
+                        <h3>계정이 없으신가요?</h3>
+                        <p style="margin-bottom: 10px;">회원 가입 하기</p>
+                    </div>
+                    <form class="row" th:action="@{/member/join}" th:object="${memberReqDto}" th:method="post">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="reg-id">아이디</label>
+                                <input class="form-control" type="text" id="reg-id" name="identity" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="reg-name">이름</label>
+                                <input class="form-control" type="text" id="reg-name" name="name" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="reg-pass">비밀번호</label>
+                                <input class="form-control" type="password" id="reg-pass" name="password" required>
+                            </div>
+                        </div>
+<!--                        <div class="col-sm-6">-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="reg-pass-confirm">비밀번호 확인</label>-->
+<!--                                <input class="form-control" type="password" id="reg-pass-confirm" required>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="reg-nickname">닉네임</label>
+                                <input class="form-control" type="text" id="reg-nickname" name="nickname" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label style="margin-bottom: 8px;">성별</label><br/>
+                                <input class="form-gender" type="radio" name="gender" value="male" required> 남성
+                                <input class="form-gender" type="radio" name="gender" value="female" required> 여성
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label style="margin-bottom: 5px;" for="reg-birthdate">생년월일</label><br/>
+                                <input class="form-control-sm" type="date" id="reg-birthdate" name="birthDate" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label style="margin-bottom: 8px;">피부 정보 입력</label><br/>
+                                <p> 피부타입 <input type="radio" id="reg-tag" value="" required> </p>
+                            </div>
+                        </div>
+
+                        <div class="button">
+                            <button style="margin-top: 10px;" class="btn" type="submit">회원 가입</button>
+                        </div>
+                        <p class="outer-link">이미 계정이 있으신가요?<a href="/member/login">로그인</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Account Register Area -->
+
+<!-- Start Footer Area -->
+<th:block th:replace="~{/layout/footer :: setContent(~{this::content} )}">
+    <th:block th:fragment="content"/>
+</th:block>
+<!--/ End Footer Area -->
+
+<!-- ========================= scroll-top ========================= -->
+<a href="#" class="scroll-top">
+    <i class="lni lni-chevron-up"></i>
+</a>
+
+<!-- ========================= JS here ========================= -->
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/tiny-slider.js"></script>
+<script src="assets/js/glightbox.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
 <script>
+    function tag_set(){
+        var pcolor = document.getElementById('pcolor').value;
+        var skin_type = document.getElementById('skin_type').value;
+        var skin_color = document.getElementById('skin_color').value;
+    }
     $(document).ready(function () {
         $("form").on("submit", function (event) {
             event.preventDefault(); // 폼 제출을 방지하여 기본 동작을 중단합니다.
@@ -93,3 +189,4 @@
         });
     });
 </script>
+</html>
