@@ -9,9 +9,10 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-//    List<Product> findAllBySubCategory(Long subCategoryId);
-//
+    List<Product> findAllBySubCategory_Id(Long subCategoryId);
+
 //    List<Product> findAllByTexture(Long textureId);
 //
 //    List<Product> findAllByTag(Long tagId);
+
 }

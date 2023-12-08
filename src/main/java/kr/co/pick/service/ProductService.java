@@ -7,12 +7,22 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
     private final ProductRepository productRepository;
+
+    // 아이디 값으로 제품 조회
+    public Product findProductById(Long productId) {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+
+        Product product = optionalProduct.orElse(null);
+
+        return product;
+    }
 
     // 모든 상품 조회
     public List<ProductResDto> readAllProducts() {
@@ -23,13 +33,10 @@ public class ProductService {
     }
 
     // 서브 카테고리로 모든 상품 조회
-//    public List<ProductResDto> readAllProductsBySub(Long subCategoryId) {
-//        return productRepository.findAllBySubCategory(subCategoryId)
-//                .stream()
-//                .map(this::toDto)
-//                .toList();
-//    }
-//
+    public List<Product> readAllProductsBySub(Long subCategoryId) {
+        return productRepository.findAllBySubCategory_Id(subCategoryId);
+    }
+
 //    // Texture 로 모든 상품 조회
 //    public List<ProductResDto> readAllProductsByTex(Long textureId) {
 //        return productRepository.findAllByTexture(textureId)

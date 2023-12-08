@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Register</title>
+    <title>회원가입</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link th:href="@{/images/favicon.svg}" rel="shortcut icon" type="image/x-icon">
@@ -41,7 +41,6 @@
         </div>
     </div>
     <!-- /End Preloader -->
-
 </th:block>
 
 <!-- Start Breadcrumbs -->
@@ -50,13 +49,13 @@
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="breadcrumbs-content">
-                    <h1 class="page-title">Registration</h1>
+                    <h1 class="page-title">회원가입</h1>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-12">
                 <ul class="breadcrumb-nav">
                     <li><a href="/home"><i class="lni lni-home"></i> Home</a></li>
-                    <li>Registration</li>
+                    <li>회원가입</li>
                 </ul>
             </div>
         </div>
@@ -72,9 +71,9 @@
                 <div class="register-form">
                     <div class="title">
                         <h3>계정이 없으신가요?</h3>
-                        <p style="margin-bottom: 10px;">회원 가입 하기</p>
+                        <p style="margin-bottom: 10px;">회원 가입을 하고 Pick! 에서 다양한 화장품을 만나보세요</p>
                     </div>
-                    <form class="row" th:action="@{/member/join}" th:object="${memberReqDto}" th:method="post">
+                    <form id="joinMember" class="row" th:action="@{/member/join}" th:object="${memberReqDto}" th:method="post">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="reg-id">아이디</label>
@@ -109,7 +108,7 @@
                             <div class="form-group">
                                 <label style="margin-bottom: 8px;">성별</label><br/>
                                 <input class="form-gender" type="radio" name="gender" value="male" required> 남성
-                                <input class="form-gender" type="radio" name="gender" value="female" required> 여성
+                                <input class="form-gender" type="radio" name="gender" value="female" style="margin-left: 20px;" required> 여성
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -118,18 +117,54 @@
                                 <input class="form-control-sm" type="date" id="reg-birthdate" name="birthDate" required>
                             </div>
                         </div>
+
+<!--                        <div class="col-sm-6">-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="reg-tag">태그</label>-->
+<!--                                <input class="form-control" type="text" id="reg-tag" name="tagId" required>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <form class="row" id="innerForm" th:action="@{/tag/input}" th:object="${tagReqDto}" th:method="post">-->
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label style="margin-bottom: 8px;">피부 정보 입력</label><br/>
-                                <p> 피부타입 <input type="radio" id="reg-tag" value="" required> </p>
+                                <p> 피부 색상
+                                    <select id="skin_color" class="tag_info" style="margin-left: 20px;">
+                                        <option value="13">13</option>
+                                        <option value="17">17</option>
+                                        <option value="21">21</option>
+                                        <option value="23">23</option>
+                                        <option value="25">25</option>
+                                    </select>
+                                <p> 피부 타입
+                                    <select id="skin_type" class="tag_info" style="margin-left: 20px;">
+                                        <option value="dry_skin">건성</option>
+                                        <option value="oily_skin">지성</option>
+                                        <option value="sensitive_skin">민감성</option>
+                                        <option value="moisture_deficit_skin">수부지</option>
+                                    </select>
+                                </p>
+                                <p> 퍼스널 컬러
+                                    <!-- 퍼스널 컬러 테스트  -->
+                                    <select id="pcolor" class="tag_info" style="margin-left: 6px;">
+                                        <option value="spring_type">봄 웜톤</option>
+                                        <option value="summer_type">여름 쿨톤</option>
+                                        <option value="autumn_type">가을 웜톤</option>
+                                        <option value="winter_type">겨울 쿨톤</option>
+                                    </select>
+                                </p>
                             </div>
                         </div>
 
+<!--                        <div class="button">-->
+<!--                            <button type="button" id="tagInfoBtn">정보 입력</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+
+
                         <div class="button">
-                            <button style="margin-top: 10px;" class="btn" type="submit">회원 가입</button>
+                            <button style="margin-top: 10px;" class="btn" type="submit">가입</button>
                         </div>
-                        <p class="outer-link">이미 계정이 있으신가요?<a href="/member/login">로그인</a>
-                        </p>
+                        <p class="outer-link">이미 계정이 있으신가요?<a href="/member/login">로그인</a></p>
                     </form>
                 </div>
             </div>
@@ -150,43 +185,47 @@
 </a>
 
 <!-- ========================= JS here ========================= -->
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/tiny-slider.js"></script>
-<script src="assets/js/glightbox.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/glightbox.min.js"></script>
+<script src="/js/main.js"></script>
 </body>
 <script>
-    function tag_set(){
-        var pcolor = document.getElementById('pcolor').value;
-        var skin_type = document.getElementById('skin_type').value;
-        var skin_color = document.getElementById('skin_color').value;
-    }
-    $(document).ready(function () {
-        $("form").on("submit", function (event) {
-            event.preventDefault(); // 폼 제출을 방지하여 기본 동작을 중단합니다.
+    $(document).ready(function() {
+        // "가입" 버튼 클릭 이벤트 리스너
+        $("#joinMember").submit(function(event) {
+            // 폼 제출 방지
+            event.preventDefault();
 
-            // Ajax를 사용하여 서버에 요청을 보냅니다.
+            // 피부 색상, 피부 타입, 퍼스널 컬러 값 얻기
+            var skinColor = $("#skin_color").val();
+            var skinType = $("#skin_type").val();
+            var pcolor = $("#pcolor").val();
+
+            // Ajax 요청 수행
             $.ajax({
-                url: $(this).attr("action"),
-                method: "POST",
-                data: $(this).serialize(),
-                success: function (response) {
+                type: "POST",
+                url: "/tag/input",
+                contentType: "application/json;charset=UTF-8",
+                data: JSON.stringify({ skinColor: skinColor, skinType: skinType, pcolor: pcolor }),
+                success: function(response) {
+                    console.log("잘 됐다.")
                     // 성공적인 응답 처리
-                    alert("회원가입이 완료되었습니다.");
-                    // 홈 페이지로 리디렉션
-                    window.location.href = "/home";
+                    // 얻어온 TagDB의 PK를 hidden input으로 추가
+                    $("#joinMember").append('<input type="hidden" name="tagId" value="' + response + '">');
+
+                    // 폼 제출
+                    $("#joinMember").unbind('submit').submit();
                 },
-                error: function (xhr, status, error) {
-                    if (xhr.status === 500) {
-                        // 500 에러가 발생한 경우 경고창을 띄우고 페이지를 리로드합니다.
-                        alert(error);
-                        // $("input[name='identity']").val("");
-                        // $("input[name='identity']").focus();
-                        return;
-                    }
+                error: function(error) {
+                    // 오류 발생 시 처리
+                    console.error(error);
                 }
             });
         });
     });
+
+
 </script>
 </html>

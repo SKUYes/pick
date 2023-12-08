@@ -2246,6 +2246,24 @@ progress {
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
+.tag_info {
+    width: 73%;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    border-radius: .25rem;
+    border: 1px solid #ced4da;
+}
+
+.form-control-sm {
+    width: 100%;
+    line-height: 1.5;
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: .25rem;
+    border: 1px solid #ced4da;
+}
+
 @media (prefers-reduced-motion:reduce) {
     .form-control {
         transition: none

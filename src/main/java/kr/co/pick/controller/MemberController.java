@@ -2,6 +2,7 @@ package kr.co.pick.controller;
 
 import jakarta.servlet.http.HttpSession;
 import kr.co.pick.dto.request.MemberReqDto;
+import kr.co.pick.dto.request.TagReqDto;
 import kr.co.pick.dto.response.MemberResDto;
 import kr.co.pick.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -72,14 +73,14 @@ public class MemberController {
         return "redirect:/home";
     }
 
-    @GetMapping("/read/{identity}")
-    public String readMember(@PathVariable String identity, Model model) {
-        MemberResDto memberResDto = memberService.readMember(identity);
-
-        model.addAttribute("member", memberResDto);
-
-        return "member/read"; // Thymeleaf 파일 이름
-    }
+//    @GetMapping("/read/{identity}")
+//    public String readMember(@PathVariable String identity, Model model) {
+//        MemberResDto memberResDto = memberService.readMember(identity);
+//
+//        model.addAttribute("member", memberResDto);
+//
+//        return "member/read"; // Thymeleaf 파일 이름
+//    }
 
 
 }

@@ -9,6 +9,7 @@ import kr.co.pick.repository.TagRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service
@@ -33,12 +34,14 @@ public class MemberService {
     }
 
     // 아이디값으로 회원 조회
-    public MemberResDto readMember(String identity) {
-        Optional<Member> member = memberRepository.findByIdentity(identity);
+    public Member readMember(String identity) {
+        Optional<Member> optionalMember = memberRepository.findByIdentity(identity);
 
-        isMember(member);
+        isMember(optionalMember);
 
-        return toDto(member.get());
+        Member member = optionalMember.orElse(null);
+
+        return member;
     }
 
     // 회원 로그인
@@ -77,7 +80,7 @@ public class MemberService {
     }
 
     // 해당 멤버 존재 체크
-    private void isMember(Optional<Member> member) {
+    private void  isMember(Optional<Member> member) {
         if (member.isEmpty()) {
             throw new RuntimeException("존재하지 않는 사용자입니다.");
         }

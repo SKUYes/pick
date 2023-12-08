@@ -1,0 +1,1605 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>제품 목록</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link th:href="@{/images/favicon.svg}" rel="shortcut icon" type="image/x-icon">
+
+    <!-- ========================= CSS here ========================= -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/LineIcons.3.0.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/tiny-slider.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/glightbox.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<th:block th:replace="~{/layout/menu :: setContent(~{this::content} )}">
+
+    <th:block th:fragment="content"/>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+    </p>
+    <![endif]-->
+
+<!-- Preloader -->
+<div class="preloader">
+    <div class="preloader-inner">
+        <div class="preloader-icon">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+<!-- /End Preloader -->
+</th:block>
+
+<!-- Start Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="breadcrumbs-content">
+                    <h1 class="page-title">제품 목록</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <ul class="breadcrumb-nav">
+                    <li><a href="/home"><i class="lni lni-home"></i> Home</a></li>
+                    <li>카테고리</li>
+                    <li><a href="#">제품 목록</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+</div>
+
+<!-- Start Product Grids -->
+<section class="product-grids section">
+    <div class="container" th:switch="${subCategoryId}">
+        <div class="row" th:case="22">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">스킨 / 토너<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting22">정렬 기준</label>
+                                    <select class="form-control" id="sorting22">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">스킨/토너</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="23">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">로션 / 에멀젼<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting23">정렬 기준</label>
+                                    <select class="form-control" id="sorting23">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">로션/에멀젼</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="24">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">에센스 / 세럼<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting24">정렬 기준</label>
+                                    <select class="form-control" id="sorting24">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">에센스/세럼</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="25">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">크림<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting25">정렬 기준</label>
+                                    <select class="form-control" id="sorting25">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">크림</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="26">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">마스크 / 팩<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting26">정렬 기준</label>
+                                    <select class="form-control" id="sorting26">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">마스크/팩</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="27">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">파운데이션<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting27">정렬 기준</label>
+                                    <select class="form-control" id="sorting27">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">파운데이션</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="28">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">파우더<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting28">정렬 기준</label>
+                                    <select class="form-control" id="sorting28">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">파우더</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="29">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">컨실러<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting29">정렬 기준</label>
+                                    <select class="form-control" id="sorting29">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">컨실러</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="30">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">베이스 / 프라이머<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting30">정렬 기준</label>
+                                    <select class="form-control" id="sorting30">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">베이스/프라이머</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="31">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">쿠션 파운데이션<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting31">정렬 기준</label>
+                                    <select class="form-control" id="sorting31">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">쿠션파운데이션</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="32">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">립스틱<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting32">정렬 기준</label>
+                                    <select class="form-control" id="sorting32">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">립스틱</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="33">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">립 틴트<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting33">정렬 기준</label>
+                                    <select class="form-control" id="sorting33">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">립 틴트</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="34">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">립글로스<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting34">정렬 기준</label>
+                                    <select class="form-control" id="sorting34">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">립글로스</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="35">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">립 케어<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting35">정렬 기준</label>
+                                    <select class="form-control" id="sorting35">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">립케어</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="36">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">아이브로우<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting36">정렬 기준</label>
+                                    <select class="form-control" id="sorting36">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">아이브로우</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="37">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">아이섀도우<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting37">정렬 기준</label>
+                                    <select class="form-control" id="sorting37">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">아이섀도우</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="38">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">마스카라<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting38">정렬 기준</label>
+                                    <select class="form-control" id="sorting38">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">마스카라</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="39">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">아이라이너<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting39">정렬 기준</label>
+                                    <select class="form-control" id="sorting39">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">아이라이너</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="40">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">하이라이터<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting40">정렬 기준</label>
+                                    <select class="form-control" id="sorting40">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">하이라이터</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="41">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">블러셔<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting41">정렬 기준</label>
+                                    <select class="form-control" id="sorting41">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">블러셔</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:case="42">
+            <div class="col-lg-9 col-12" style="width: 100%;">
+                <div class="product-grids-head">
+                    <div class="product-grid-topbar">
+                        <h3 class="total-show-product">쉐이딩<span></span></h3><br/>
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-md-8 col-12">
+                                <div class="product-sorting">
+                                    <label for="sorting42">정렬 기준</label>
+                                    <select class="form-control" id="sorting42">
+                                        <option>Popularity</option>
+                                        <option>Low - High Price</option>
+                                        <option>High - Low Price</option>
+                                        <option>Average Rating</option>
+                                        <option>A - Z Order</option>
+                                        <option>Z - A Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-4 col-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content nav-tabContent">
+                        <div class="tab-pane fade show active nav-grid" role="tabpanel"
+                             aria-labelledby="nav-grid-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12" th:each="product: ${products}">
+                                    <!-- Start Single Product -->
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <div class="button">
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <span class="category">쉐이딩</span>
+                                            <h4 class="title">
+                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                            </h4>
+                                            <ul class="review">
+                                            </ul>
+                                            <div class="price">
+                                                <span th:text="${product.price}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Product -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination left">
+                                        <ul class="pagination-list">
+                                            <li><a href="javascript:void(0)">1</a></li>
+                                            <li class="active"><a href="javascript:void(0)">2</a></li>
+                                            <li><a href="javascript:void(0)">3</a></li>
+                                            <li><a href="javascript:void(0)">4</a></li>
+                                            <li><a href="javascript:void(0)"><i
+                                                    class="lni lni-chevron-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!--/ End Pagination -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- End Product Grids -->
+
+<!-- Start Footer Area -->
+<th:block th:replace="~{/layout/footer :: setContent(~{this::content} )}">
+    <th:block th:fragment="content"/>
+</th:block>
+<!--/ End Footer Area -->
+
+<!-- ========================= scroll-top ========================= -->
+<a href="#" class="scroll-top">
+    <i class="lni lni-chevron-up"></i>
+</a>
+
+<!-- ========================= JS here ========================= -->
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/glightbox.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+
+</html>
