@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Getter
@@ -42,6 +43,9 @@ public class Member extends BaseEntity{
     @JoinColumn(name = "tag_id")
     private Tag tag;
 
+    @Column(name="age")
+    private int age;
+
     @Builder
     public Member(String identity,
                   String password,
@@ -57,6 +61,7 @@ public class Member extends BaseEntity{
         this.gender = gender;
         this.birthDate = birthDate;
         this.tag = tag;
+        this.age = calculateAge();
     }
 
     public void updateMember(MemberReqDto updateMember, Tag updateTag) {
@@ -66,6 +71,11 @@ public class Member extends BaseEntity{
         this.birthDate = updateMember.getBirthDate();
         this.gender = updateMember.getGender();
         this.tag = updateTag;
+        this.age = calculateAge();
+    }
+
+    private int calculateAge(){
+        return Period.between(birthDate, LocalDate.now()).getYears();
     }
 
 }

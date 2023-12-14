@@ -35,5 +35,7 @@ public class MemberResDto {
 
     private String memberPcolor;
 
+    private int age;
+
 
 }

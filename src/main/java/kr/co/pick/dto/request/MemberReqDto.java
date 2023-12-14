@@ -25,4 +25,6 @@ public class MemberReqDto {
 
     private Long tagId;
 
+    private int age;
+
 }
