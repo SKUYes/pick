@@ -98,7 +98,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -106,7 +106,7 @@
                                         <div class="product-info">
                                             <span class="category">스킨/토너</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -170,7 +170,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -178,7 +178,7 @@
                                         <div class="product-info">
                                             <span class="category">로션/에멀젼</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -242,7 +242,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -250,7 +250,7 @@
                                         <div class="product-info">
                                             <span class="category">에센스/세럼</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -314,7 +314,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -322,7 +322,7 @@
                                         <div class="product-info">
                                             <span class="category">크림</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -386,7 +386,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -394,7 +394,7 @@
                                         <div class="product-info">
                                             <span class="category">마스크/팩</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -458,7 +458,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -466,7 +466,7 @@
                                         <div class="product-info">
                                             <span class="category">파운데이션</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -530,15 +530,15 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
-                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
+                                                <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i>위시리스트</a>
                                             </div>
                                         </div>
                                         <div class="product-info">
                                             <span class="category">파우더</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -602,7 +602,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -610,7 +610,7 @@
                                         <div class="product-info">
                                             <span class="category">컨실러</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -674,7 +674,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -682,7 +682,7 @@
                                         <div class="product-info">
                                             <span class="category">베이스/프라이머</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -746,7 +746,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -754,7 +754,7 @@
                                         <div class="product-info">
                                             <span class="category">쿠션파운데이션</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -818,7 +818,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -826,7 +826,7 @@
                                         <div class="product-info">
                                             <span class="category">립스틱</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -890,7 +890,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -898,7 +898,7 @@
                                         <div class="product-info">
                                             <span class="category">립 틴트</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -962,7 +962,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -970,7 +970,7 @@
                                         <div class="product-info">
                                             <span class="category">립글로스</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -1034,7 +1034,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -1042,7 +1042,7 @@
                                         <div class="product-info">
                                             <span class="category">립케어</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -1106,7 +1106,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -1114,7 +1114,7 @@
                                         <div class="product-info">
                                             <span class="category">아이브로우</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -1178,7 +1178,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -1186,7 +1186,7 @@
                                         <div class="product-info">
                                             <span class="category">아이섀도우</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -1250,7 +1250,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -1258,7 +1258,7 @@
                                         <div class="product-info">
                                             <span class="category">마스카라</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -1322,7 +1322,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -1330,7 +1330,7 @@
                                         <div class="product-info">
                                             <span class="category">아이라이너</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -1394,7 +1394,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -1402,7 +1402,7 @@
                                         <div class="product-info">
                                             <span class="category">하이라이터</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -1466,7 +1466,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -1474,7 +1474,7 @@
                                         <div class="product-info">
                                             <span class="category">블러셔</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>
@@ -1538,7 +1538,7 @@
                                     <!-- Start Single Product -->
                                     <div class="single-product">
                                         <div class="product-image">
-                                            <img src="/images/products/product-1.jpg" alt="#">
+                                            <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#">
                                             <div class="button">
                                                 <a th:href="@{/wishlist/add/{productId}(productId=${product.id})}" class="btn"><i class="lni lni-heart"></i></i>위시리스트</a>
                                             </div>
@@ -1546,7 +1546,7 @@
                                         <div class="product-info">
                                             <span class="category">쉐이딩</span>
                                             <h4 class="title">
-                                                <a href="product-grids.html" th:text="${product.name}"></a>
+                                                <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
                                             </h4>
                                             <ul class="review">
                                             </ul>

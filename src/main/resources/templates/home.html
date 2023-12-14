@@ -129,9 +129,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title">
-                    <h2>Trending Product</h2>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                        suffered alteration in some form.</p>
+                    <h2>이런 상품들은 어떠세요?</h2>
+                    <p>고객님과 비슷한 연령대 & 성별의 다른 회원들은 어떤 상품을 위시리스트에 추가했는지 확인해 보세요!</p>
                 </div>
             </div>
         </div>
@@ -379,7 +378,7 @@
 <!-- End Trending Product Area -->
 
 <!-- Start Call Action Area -->
-<section class="call-action section">
+<section class="call-action section" th:if="${session.loginMember!=null}">
     <div class="container">
         <div class="row ">
             <div class="col-lg-8 offset-lg-2 col-12">
@@ -390,7 +389,7 @@
                         <p class="wow fadeInUp" data-wow-delay=".6s">Please, purchase full version of the template
                             to get all pages,<br> features and commercial license.</p>
                         <div class="button wow fadeInUp" data-wow-delay=".8s">
-                            <a href="javascript:void(0)" class="btn">Purchase Now</a>
+                            <a th:href="@{/recommendation/recommendByAgeAndGender}" class="btn">보러가기</a>
                         </div>
                     </div>
                 </div>

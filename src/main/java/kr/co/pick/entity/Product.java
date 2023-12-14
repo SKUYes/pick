@@ -21,15 +21,15 @@ public class Product extends BaseEntity{
     @Column(name = "price")
     private String price;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "sub_category_id")
     private SubCategory subCategory;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "texture_id")
     private Texture texture;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "tag_id")
     private Tag tag;
 

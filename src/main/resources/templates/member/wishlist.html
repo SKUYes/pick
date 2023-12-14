@@ -73,7 +73,7 @@
                     <div class="col-lg-1 col-md-1 col-12">
 
                     </div>
-                    <div class="col-lg-4 col-md-3 col-12">
+                    <div class="col-lg-4 col-md-3 col-12" style="width: 40%;">
                         <p>제품명</p>
                     </div>
 
@@ -92,15 +92,11 @@
                 <div class="cart-single-list">
                     <div class="row align-items-center">
                         <div class="col-lg-1 col-md-1 col-12">
-                            <a th:href="@{'/product/' + ${product.id}}"><img src="/images/products/product-1.jpg" alt="#"></a>
+                            <a th:href="@{'/product/productDetail/' + ${product.id}}"><img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#"></a>
                         </div>
-                        <div class="col-lg-4 col-md-3 col-12">
-                            <h5 class="product-name" style="font-size: 14px;"><a th:href="@{'/product/' + ${product.id}}" th:text="${product.name}">
+                        <div class="col-lg-4 col-md-3 col-12" style=" width: 40%;">
+                            <h5 class="product-name" style="font-size: 14px;"><a th:href="@{'/product/productDetail/' + ${product.id}}" th:text="${product.name}">
                             </a></h5>
-<!--                            <p class="product-des">-->
-<!--                                <span><em>Type:</em> Mirrorless</span>-->
-<!--                                <span><em>Color:</em> Black</span>-->
-<!--                            </p>-->
                         </div>
 
                         <div class="col-lg-2 col-md-2 col-12" th:text="${product.price}">
