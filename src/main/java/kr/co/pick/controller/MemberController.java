@@ -44,7 +44,6 @@ public class MemberController {
     public String login(@ModelAttribute MemberReqDto memberReqDto, HttpSession session) {
 
         MemberResDto loginMember = memberService.loginMember(memberReqDto.getIdentity(), memberReqDto.getPassword());
-
         session.setAttribute("loginMember", loginMember);
 
         return "redirect:/home";

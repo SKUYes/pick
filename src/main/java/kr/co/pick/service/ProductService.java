@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,18 @@ public class ProductService {
         return productRepository.findAllBySubCategory_Id(subCategoryId);
     }
 
+    // Product 랜덤하게 12개 불러오기
+    public List<Product> randomProducts(){
+        // ProductDB에서 모든 제품을 가져옴
+        List<Product> allProducts = productRepository.findAll();
+
+        // 랜덤하게 섞음
+        Collections.shuffle(allProducts);
+
+        // 앞에서 12개만 선택하여 반환
+        return allProducts.subList(0, 12);
+    }
+
     public Page<ProductResDto> searchProducts(String searchType, String searchValue, Pageable pageable) {
         if (searchValue == null || searchValue.isEmpty()) {
             // 검색어가 비어있는 경우, 전체 상품 조회
@@ -63,6 +76,7 @@ public class ProductService {
             return Page.empty(pageable);
         }
     }
+
 //    // Texture 로 모든 상품 조회
 //    public List<ProductResDto> readAllProductsByTex(Long textureId) {
 //        return productRepository.findAllByTexture(textureId)

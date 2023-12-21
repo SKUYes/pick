@@ -4091,6 +4091,73 @@ top: 2px;
   margin-top: 30px;
 }
 
+/* 슬라이더 컨테이너에 대한 스타일 */
+.slider-container {
+  max-width: 600px; /* 필요에 따라 최대 너비를 조절하세요. */
+  margin: auto;
+}
+
+/* 각 슬라이더 아이템(이미지)에 대한 스타일 */
+.slider-item {
+  width: 100%;
+}
+
+/* 갤러리를 감싸는 부모 요소 */
+.custom-controls-container {
+  position: relative;
+
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* 왼쪽 화살표 버튼 */
+.custom-prev, .custom-prev-2, .custom-prev-3 {
+  left: 10px; /* 왼쪽으로 10px 이동 */
+}
+
+.custom-next, .custom-next-2, .custom-next-3 {
+  right: 10px; /* 오른쪽으로 10px 이동 */
+}
+
+/* 화살표 아이콘 스타일 조절 */
+.custom-prev i, .custom-next i, .custom-prev-2 i, .custom-next-2 i, .custom-prev-3 i, .custom-next-3 i {
+  font-size: 24px; /* 아이콘 크기 조절 */
+}
+
+/* 화살표 버튼 스타일 */
+.custom-prev, .custom-next, .custom-prev-2, .custom-next-2, .custom-prev-3, .custom-next-3 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+}
+
+/* 제목 스타일 */
+.custom-controls-container h5 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* 부제목 스타일 */
+.custom-controls-container p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px),
 (max-width: 767px) {
   .product-details-info .info-body.custom-responsive-margin {
@@ -4319,6 +4386,23 @@ top: 2px;
 .product-details-info .reviews .single-review .review-info p {
   margin-top: 15px;
 }
+
+.recommend-text a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #cc5fe6;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+
+}
+
+.recommend-text a:hover {
+  background-color: #081828;
+}
+
 
 .review-modal .modal-dialog {
   max-width: 600px;

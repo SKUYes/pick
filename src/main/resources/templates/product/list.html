@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+
+    <!-- Bootstrap CSS 링크 (CDN 사용 가능) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Product List</h2>
+
+    <!-- 검색 폼 추가 -->
+    <form th:action="@{/product/list}" method="get">
+        <div class="form-group">
+            <label for="searchType">검색 타입:</label>////////////////
+            <select class="form-control" id="searchType" name="searchType">/////////////////////////
+                <option value="subCategoryId">서브 카테고리</option>
+                <option value="textureId">Texture</option>
+                <option value="tagId">Tag</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="searchValue">검색어:</label>//////////////////
+            <input type="text" class="form-control" id="searchValue" name="searchValue" placeholder="검색어">/////////////////
+        </div>
+
+        <button type="submit" class="btn btn-primary">검색</button>
+    </form>
+
+    <table class="table table-bordered mt-4">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category Id</th>
+            <th>Category Name</th>
+            <th>Sub Id</th>
+            <th>Sub Name</th>
+            <th>Texture Id</th>
+            <th>Texture Name</th>
+            <th>Tag Id</th>
+            <th>Skin Type</th>
+            <th>Skin Color</th>
+            <th>Pcolor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- productList를 순회하며 제품 정보 표시 -->
+        <tr th:each="product : ${productListBySearch}">
+            <td th:text="${product.productId}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.categoryId}"></td>
+            <td th:text="${product.categoryName}"></td>
+            <td th:text="${product.subCategoryId}"></td>
+            <td th:text="${product.subCategoryName}"></td>
+            <td th:text="${product.textureId}"></td>
+            <td th:text="${product.textureName}"></td>
+            <td th:text="${product.tagId}"></td>
+            <td th:text="${product.productSkinType}"></td>
+            <td th:text="${product.productSkinColor}"></td>
+            <td th:text="${product.productPcolor}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- 페이징 처리를 위한 페이지 번호 및 이동 버튼 -->
+<!--    <div class="d-flex justify-content-center mt-4">-->
+<!--        <nav aria-label="Page navigation example">-->
+<!--            <ul class="pagination">-->
+<!--                <li class="page-item" th:if="${currentPage > 0}">-->
+<!--                    <a class="page-link" th:href="@{/product/list(page=0, size=${productList.size})}" aria-label="First">-->
+<!--                        <span aria-hidden="true">&laquo;&laquo;</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="page-item" th:if="${currentPage > 0}">-->
+<!--                    <a class="page-link" th:href="@{/product/list(page=${currentPage - 1}, size=${productList.size})}" aria-label="Previous">-->
+<!--                        <span aria-hidden="true">&laquo;</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="page-item" th:each="page, stat : ${#numbers.sequence(0, totalPages - 1)}">-->
+<!--                    <a class="page-link" th:if="${page != currentPage}" th:href="@{/product/list(page=${page}, size=${productList.size})}" th:text="${page + 1}"></a>-->
+<!--                    <span th:if="${page == currentPage}"> <span class="sr-only">(current)</span></span>-->
+<!--                </li>-->
+<!--                <li class="page-item" th:if="${currentPage < totalPages - 1}">-->
+<!--                    <a class="page-link" th:href="@{/product/list(page=${currentPage + 1}, size=${productList.size})}" aria-label="Next">-->
+<!--                        <span aria-hidden="true">&raquo;</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="page-item" th:if="${currentPage < totalPages - 1}">-->
+<!--                    <a class="page-link" th:href="@{/product/list(page=${totalPages - 1}, size=${productList.size})}" aria-label="Last">-->
+<!--                        <span aria-hidden="true">&raquo;&raquo;</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </nav>-->
+<!--    </div>-->
+
+
+</div>
+
+<!-- Bootstrap JS 스크립트 (CDN 사용 가능) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-M6qrz3JENxgt7/2VtIKp4R3vaX1b1CDL1WAqF/oE12Srsi5KTdP5ZDxfr8p7iMVW"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6YRaTuvEWO8FLt5lFdqDO/DvHddFYoIXpQom" ,
+        crossorigin="anonymous"></script>
+</body>
+</html>
+

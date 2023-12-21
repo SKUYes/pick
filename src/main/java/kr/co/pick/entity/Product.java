@@ -1,12 +1,12 @@
 package kr.co.pick.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class Product extends BaseEntity{
 

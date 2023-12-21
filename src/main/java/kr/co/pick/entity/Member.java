@@ -53,7 +53,8 @@ public class Member extends BaseEntity{
                   String nickname,
                   String gender,
                   LocalDate birthDate,
-                  Tag tag) {
+                  Tag tag,
+                  int age) {
         this.identity = identity;
         this.password = password;
         this.name = name;

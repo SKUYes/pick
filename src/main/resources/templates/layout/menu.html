@@ -9,52 +9,18 @@
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-left">
                             <ul class="menu-top-link">
-                                <!--                                            <li>-->
-                                <!--                                                <div class="select-position">-->
-                                <!--                                                    <select id="select4">-->
-                                <!--                                                        <option value="0" selected>$ USD</option>-->
-                                <!--                                                        <option value="1">€ EURO</option>-->
-                                <!--                                                        <option value="2">$ CAD</option>-->
-                                <!--                                                        <option value="3">₹ INR</option>-->
-                                <!--                                                        <option value="4">¥ CNY</option>-->
-                                <!--                                                        <option value="5">৳ BDT</option>-->
-                                <!--                                                    </select>-->
-                                <!--                                                </div>-->
-                                <!--                                            </li>-->
-                                <!--                                            <li>-->
-                                <!--                                                <div class="select-position">-->
-                                <!--                                                    <select id="select5">-->
-                                <!--                                                        <option value="0" selected>English</option>-->
-                                <!--                                                        <option value="1">Español</option>-->
-                                <!--                                                        <option value="2">Filipino</option>-->
-                                <!--                                                        <option value="3">Français</option>-->
-                                <!--                                                        <option value="4">العربية</option>-->
-                                <!--                                                        <option value="5">हिन्दी</option>-->
-                                <!--                                                        <option value="6">বাংলা</option>-->
-                                <!--                                                    </select>-->
-                                <!--                                                </div>-->
-                                <!--                                            </li>-->
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-middle">
                             <ul class="useful-links">
-                                <!--                            <li><a href="home">Home</a></li>-->
-                                <!--                            <li><a href="about-us.html">About Us</a></li>-->
-                                <!--                            <li><a href="contact.html">Contact Us</a></li>-->
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-end" style="height: 30px;">
-
-
                             <div class="user">
-                                <!--                            <div th:if="${session.loginMember == null}">-->
-                                <!--                                <i class="lni lni-user"></i>-->
-                                <!--                                Hello-->
-                                <!--                            </div>-->
                                 <div th:if="${session.loginMember != null}">
                                     <i class="lni lni-user"></i>
                                     <span th:text="${session.loginMember.nickname}"/>
@@ -70,7 +36,7 @@
                             </ul>
                             <ul class="user-login" th:if="${session.loginMember != null}">
                                 <li>
-                                    <a href="/wishlist/view">마이 페이지</a>
+                                    <a th:href="@{/member/update}">마이 페이지</a>
                                 </li>
                                 <li>
                                     <form th:action="@{/member/logout}" method="post">
@@ -96,24 +62,35 @@
                         <!-- Start Header Logo -->
                         <a class="navbar-brand" href="/home">
                             <h1>Pick!</h1>
-                            <!--                        <img src="/images/logo/logo.svg" alt="Logo">-->
                         </a>
                         <!-- End Header Logo -->
                     </div>
                     <div class="col-lg-5 col-md-7 d-xs-none">
                         <!-- Start Main Menu Search -->
-                        <div class="main-menu-search">
-                            <!-- navbar search start -->
-                            <div class="navbar-search search-style-5">
-                                <div class="search-input">
-                                    <input type="text" placeholder="Search">
+                        <form th:action="@{/product/list}" method="get">
+                            <div class="main-menu-search">
+                                <!-- navbar search start -->
+                                <div class="navbar-search search-style-5">
+                                    <div class="search-select">
+                                        <div class="select-position">
+                                            <select class="form-control" id="searchType" name="searchType">
+                                                <option selected="">All</option>
+                                                <option value="subCategoryId">서브 카테고리</option>
+                                                <option value="textureId">Texture</option>
+                                                <option value="tagId">Tag</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="search-input">
+                                        <input type="text" class="form-control" id="searchValue" name="searchValue" placeholder="Search">
+                                    </div>
+                                    <div class="search-btn">
+                                        <button type="submit" class="btn btn-primary"><i class="lni lni-search-alt"></i></button>
+                                    </div>
                                 </div>
-                                <div class="search-btn">
-                                    <button><i class="lni lni-search-alt"></i></button>
-                                </div>
+                                <!-- navbar search Ends -->
                             </div>
-                            <!-- navbar search Ends -->
-                        </div>
+                        </form>
                         <!-- End Main Menu Search -->
                     </div>
                     <div class="col-lg-4 col-md-2 col-5">
@@ -142,53 +119,6 @@
                         <!-- Start Mega Category Menu -->
                         <div class="mega-category-menu">
                             <span class="cat-button"><i class="lni lni-menu"></i>카테고리</span>
-                            <ul class="sub-category">
-                                <li><a href="#">스킨 케어 <i class="lni lni-chevron-right"></i></a>
-                                    <ul class="inner-sub-category">
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=22)}">스킨/토너</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=23)}">로션/에멀젼</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=24)}">에센스/세럼</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=25)}">크림</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=26)}">마스크/팩</a></li>
-                                    </ul>
-                                </li>
-
-                                <li><a href="#">페이스 메이크업 <i class="lni lni-chevron-right"></i></a>
-                                    <ul class="inner-sub-category">
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=27)}">파운데이션</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=31)}">쿠션파운데이션</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=28)}">파우더</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=29)}">컨실러</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=30)}">베이스/프라이머</a></li>
-                                    </ul>
-                                </li>
-
-                                <li><a href="#">립 메이크업 <i class="lni lni-chevron-right"></i></a>
-                                    <ul class="inner-sub-category">
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=32)}">립스틱</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=33)}">립 틴트</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=34)}">립글로스</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=35)}">립 케어</a></li>
-                                    </ul>
-                                </li>
-
-                                <li><a href="#">아이 메이크업 <i class="lni lni-chevron-right"></i></a>
-                                    <ul class="inner-sub-category">
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=36)}">아이브로우</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=37)}">아이섀도우</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=38)}">마스카라</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=39)}">아이라이너</a></li>
-                                    </ul>
-                                </li>
-
-                                <li><a href="#">컨투어링 <i class="lni lni-chevron-right"></i></a>
-                                    <ul class="inner-sub-category">
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=40)}">하이라이터</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=41)}">블러셔</a></li>
-                                        <li><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=42)}">쉐이딩</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
                         </div>
                         <!-- End Mega Category Menu -->
                         <!-- Start Navbar -->
@@ -208,42 +138,58 @@
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                            data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
-                                           aria-expanded="false" aria-label="Toggle navigation">Pages</a>
+                                           aria-expanded="false" aria-label="Toggle navigation">스킨케어</a>
                                         <ul class="sub-menu collapse" id="submenu-1-2">
-                                            <li class="nav-item"><a href="about-us.html">About Us</a></li>
-                                            <li class="nav-item"><a href="faq.html">Faq</a></li>
-                                            <li class="nav-item"><a href="/member/login">Login</a></li>
-                                            <li class="nav-item"><a href="register.html">Register</a></li>
-                                            <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
-                                            <li class="nav-item"><a href="404.html">404 Error</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=22)}">스킨/토너</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=23)}">로션/에멀젼</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=24)}">에센스/세럼</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=25)}">크림</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=26)}">마스크/팩</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-                                           aria-expanded="false" aria-label="Toggle navigation">Shop</a>
+                                           aria-expanded="false" aria-label="Toggle navigation">페이스</a>
                                         <ul class="sub-menu collapse" id="submenu-1-3">
-                                            <li class="nav-item"><a href="product-grids.html">Shop Grid</a></li>
-                                            <li class="nav-item"><a href="product-list.html">Shop List</a></li>
-                                            <li class="nav-item"><a href="../product/product-details.html">shop Single</a></li>
-                                            <li class="nav-item"><a href="cart.html">Cart</a></li>
-                                            <li class="nav-item"><a href="checkout.html">Checkout</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=27)}">파운데이션</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=31)}">쿠션파운데이션</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=28)}">파우더</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=29)}">컨실러</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=30)}">베이스/프라이머</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                            data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
-                                           aria-expanded="false" aria-label="Toggle navigation">Blog</a>
+                                           aria-expanded="false" aria-label="Toggle navigation">립</a>
                                         <ul class="sub-menu collapse" id="submenu-1-4">
-                                            <li class="nav-item"><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a>
-                                            </li>
-                                            <li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
-                                            <li class="nav-item"><a href="blog-single-sidebar.html">Blog Single
-                                                Sibebar</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=32)}">립스틱</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=33)}">립 틴트</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=34)}">립글로스</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=35)}">립 케어</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="contact.html" aria-label="Toggle navigation">Contact Us</a>
+                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+                                           data-bs-target="#submenu-1-5" aria-controls="navbarSupportedContent"
+                                           aria-expanded="false" aria-label="Toggle navigation">아이</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-5">
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=36)}">아이브로우</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=37)}">아이섀도우</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=38)}">마스카라</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=39)}">아이라이너</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+                                           data-bs-target="#submenu-1-6" aria-controls="navbarSupportedContent"
+                                           aria-expanded="false" aria-label="Toggle navigation">컨투어링</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-6">
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=40)}">하이라이터</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=41)}">블러셔</a></li>
+                                            <li class="nav-item"><a th:href="@{/product/productList/{subCategoryId}(subCategoryId=42)}">쉐이딩</a></li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->

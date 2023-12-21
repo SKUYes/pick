@@ -1,71 +1,176 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>회원 정보 수정</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link th:href="@{/images/favicon.svg}" rel="shortcut icon" type="image/x-icon">
+
+    <!-- ========================= CSS here ========================= -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/LineIcons.3.0.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/tiny-slider.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/glightbox.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
 <th:block th:replace="~{/layout/menu :: setContent(~{this::content} )}">
 
-    <th:block th:fragment="content">
-        <h2 class="mt-4">마이페이지 - 수정</h2>
+    <th:block th:fragment="content"/>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+    </p>
+    <![endif]-->
 
-        <form th:action="@{/member/update}" th:object="${memberReqDto}" th:method="post">
-            <table>
-                <thead></thead>
-                <tbody>
-                <tr>
-                    <td>아이디:</td>
-                    <td><input type="text" class="form-control-sm" name="identity" th:value="${session.loginMember.identity}" readonly>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>비밀번호:</td>
-                    <td><input type="password" class="form-control-sm" name="password" placeholder="비밀번호를 입력하세요"
-                               required></td>
-                </tr>
-
-                <tr>
-                    <td>이름:</td>
-                    <td><input type="text" class="form-control-sm" name="name" th:value="${session.loginMember.name}" required></td>
-                </tr>
-
-                <tr>
-                    <td>닉네임:</td>
-                    <td><input type="text" class="form-control-sm" name="nickname" th:value="${session.loginMember.nickname}" required>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>성별:</td>
-                    <td>
-                        <input type="radio" name="gender" value="남성" required> 남성
-                        <input type="radio" name="gender" value="여성" required> 여성
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>생년월일:</td>
-                    <td><input type="date" class="form-control-sm" name="birthDate" th:value="${session.loginMember.birthDate}" required></td>
-                </tr>
-
-                <tr>
-                    <td>태그:</td>
-                    <td><input type="number" class="form-control-sm" name="tagId" th:value="${session.loginMember.tagId}" required></td>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <button class="btn btn-sm btn-primary" type="submit">정보수정</button>
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-        </form>
-
-    </th:block>
-
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- /End Preloader -->
 </th:block>
 
+<!-- Start Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="breadcrumbs-content">
+                    <h1 class="page-title">회원 정보 수정</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <ul class="breadcrumb-nav">
+                    <li><a href="/home"><i class="lni lni-home"></i> Home</a></li>
+                    <li>회원 정보 수정</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+
+<!-- Start Account Register Area -->
+<div class="account-login section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+                <div class="register-form">
+                    <div class="title">
+                        <h3>회원 정보 수정</h3>
+                        <p style="margin-bottom: 10px;">회원 정보 수정 페이지 입니다.</p>
+                    </div>
+                    <form id="joinMember" class="row" th:action="@{/member/update}" th:object="${memberReqDto}" th:method="post">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="reg-id">아이디</label>
+                                <!-- 아이디 입력 필드를 읽기 전용으로 설정 -->
+                                <input class="form-control" type="text" id="reg-id" name="identity" th:value="${session.loginMember.identity}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="reg-name">이름</label>
+                                <input class="form-control" type="text" id="reg-name" name="name" th:value="${session.loginMember.name}" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="reg-pass">비밀번호</label>
+                                <input class="form-control" type="password" id="reg-pass" name="password" placeholder="비밀번호를 입력하세요" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="reg-nickname">닉네임</label>
+                                <input class="form-control" type="text" id="reg-nickname" name="nickname" th:value="${session.loginMember.nickname}" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label style="margin-bottom: 8px;">성별</label><br/>
+                                <input class="form-gender" type="radio" name="gender" value="male" required> 남성
+                                <input class="form-gender" type="radio" name="gender" value="female" style="margin-left: 20px;" required> 여성
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label style="margin-bottom: 5px;" for="reg-birthdate">생년월일</label><br/>
+                                <input class="form-control-sm" type="date" id="reg-birthdate" name="birthDate" th:value="${session.loginMember.birthDate}" required>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <p> 피부 색상
+                                    <select id="skin_color" class="tag_info" style="margin-left: 20px;">
+                                        <option value="13">13</option>
+                                        <option value="17">17</option>
+                                        <option value="21">21</option>
+                                        <option value="23">23</option>
+                                        <option value="25">25</option>
+                                    </select>
+                                <p> 피부 타입
+                                    <select id="skin_type" class="tag_info" style="margin-left: 20px;">
+                                        <option value="dry_skin">건성</option>
+                                        <option value="oily_skin">지성</option>
+                                        <option value="sensitive_skin">민감성</option>
+                                        <option value="moisture_deficit_skin">수부지</option>
+                                    </select>
+                                </p>
+                                <p> 퍼스널 컬러
+                                    <!-- 퍼스널 컬러 테스트  -->
+                                    <select id="pcolor" class="tag_info" style="margin-left: 6px;">
+                                        <option value="spring_type">봄 웜톤</option>
+                                        <option value="summer_type">여름 쿨톤</option>
+                                        <option value="autumn_type">가을 웜톤</option>
+                                        <option value="winter_type">겨울 쿨톤</option>
+                                    </select>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="button">
+                            <button style="margin-top: 10px;" class="btn" type="submit">정보수정</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Account Register Area -->
+
+<!-- Start Footer Area -->
+<th:block th:replace="~{/layout/footer :: setContent(~{this::content} )}">
+    <th:block th:fragment="content"/>
+</th:block>
+<!--/ End Footer Area -->
+
+<!-- ========================= scroll-top ========================= -->
+<a href="#" class="scroll-top">
+    <i class="lni lni-chevron-up"></i>
+</a>
+
+<!-- ========================= JS here ========================= -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/glightbox.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
 <script>
     $(document).ready(function () {
         $("form").on("submit", function (event) {
@@ -95,3 +200,4 @@
         });
     });
 </script>
+</html>
