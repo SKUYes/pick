@@ -34,6 +34,11 @@ public class MainController {
             // 설문 기반 추천
             List<Product> recommendProducts = recommendationService.getRecommendedProductsByAgeAndGender(loginMember.getMemberId());
             model.addAttribute("wishlistItemsByGenderAndAge", recommendProducts);
+
+            // 성별, 연령기반 추천
+            List<Product> sameGenderAndSimilarAge = recommendationService.findProductsBySimilarAgeAndSameGender(loginMember.getMemberId());
+            model.addAttribute("sameGenderAndSimilarAge", sameGenderAndSimilarAge);
+
         }
 
     }

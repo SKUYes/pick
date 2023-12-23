@@ -68,8 +68,6 @@ public class ProductController {
         Product product = productService.findProductById(productId);
         model.addAttribute("productDetail", product);
 
-        // product ↔ product 추천
-
 
         if(session.getAttribute("loginMember") != null){
             MemberResDto loginMember = (MemberResDto) session.getAttribute("loginMember");
@@ -81,6 +79,10 @@ public class ProductController {
             // member ↔ product 추천
             List<Product> recommendByMemberTagInfo = recommendationService.findProductsByMemberTagInfo(loginMember.getMemberId());
             model.addAttribute("recommendByMemberTagInfo", recommendByMemberTagInfo);
+
+            // product ↔ product 추천
+            List<Product> recommendByOtherProduct = recommendationService.getRecommendedProductsForProduct(product.getId());
+            model.addAttribute("recommendByOtherProduct", recommendByOtherProduct);
         }
 
         System.out.println("*****Service 실행 끝");

@@ -149,7 +149,7 @@
                 <!-- 왼쪽 화살표 버튼 -->
                 <button class="custom-prev"><i class="lni lni-chevron-left"></i></button>
                 <div class="my-slider custom-slider-1">
-                    <div th:each="product: ${recommendByOtherMemberWishlist}" class="slider-item">
+                    <div th:each="product: ${recommendByOtherProduct}" class="slider-item">
                         <a th:href="@{/product/productDetail/{productId}(productId=${product.id})}">
                             <img th:src="@{'/images/products/' + ${product.id} + '.webp'}" alt="#" style="opacity: 1;">
                         </a>
@@ -163,9 +163,13 @@
         <div class="product-details-info">
             <div class="single-block">
                 <div class="row">
-                    <img th:src="@{'/images/product-info/' + ${productDetail.id} + '.jpg'}" alt="#">
-                </div>
+<!--                    <img th:if="${productDetail.id != null}" th:src="@{'/images/product-info/' + ${productDetail.id} + '.jpg'}" alt="제품 사진이 없습니다.">-->
+<!--                    <img th:unless="${productDetail.id != null}" th:src="@{/images/product-info/187.jpg}" alt="대체 이미지">-->
 
+                    <!--                    <img th:src="@{'/images/product-info/' + ${productDetail.id} + '.jpg'}" alt="제품 사진이 없습니다.">-->
+
+                    <img id="productImage" th:src="@{'/images/product-info/' + ${productDetail.id} + '.jpg'}" alt="제품 사진이 없습니다." onerror="setDefaultImage()">
+                </div>
             </div>
         </div>
 
@@ -246,6 +250,10 @@
 
 <!-- JS 부분 -->
 <script>
+    function setDefaultImage() {
+        document.getElementById('productImage').src = /* 대체 이미지 경로 */ '/images/product-info/187.jpg';
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         var slider1 = tns({
             container: '.custom-slider-1',

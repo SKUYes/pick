@@ -258,5 +258,108 @@ public class RecommendationService {
         // Set을 List로 변환하여 반환
         return new ArrayList<>(recommendedProducts);
     }
+
+    //가중치 기반 product ↔ product 추천 제품 불러오기
+    public List<Product> getRecommendedProductsForProduct(Long productId) {
+        // 특정 제품 정보 가져오기
+        Optional<Product> baseProduct = productRepository.findById(productId);
+
+        if (baseProduct.isPresent()) {
+            Product product = baseProduct.get();
+            Tag productTag = product.getTag();
+
+            // 태그 값 중에서 현재 제품의 태그 정보가 2개 이상 겹치는 태그 ID와 가중치 가져오기
+            List<Long> tagWeights = findTagWeights(productTag);
+
+            // 제품 DB에서 현재 제품의 태그와 상당 부분 일치하는 제품 가져오기
+            List<Product> recommendedProducts = findProductsByTagWeights(tagWeights);
+
+            // 현재 제품 제외
+            recommendedProducts.remove(product);
+
+            return recommendedProducts;
+        } else {
+            throw new NoSuchElementException("Product not found with ID: " + productId);
+        }
+    }
+
+    // 로그인한 사용자와 같은 성별 + 비슷한 연령대가 많이 추가한 위시리스트 가중치 기반으로 제품 추천
+    public List<Product> findProductsBySimilarAgeAndSameGender(Long loggedInMemberId) {
+        // 현재 로그인한 회원 정보
+        Optional<Member> loggedInMember = memberRepository.findById(loggedInMemberId);
+
+        // 현재 로그인한 회원의 위시리스트
+        List<Wishlist> loggedInMemberWishlist = wishlistRepository.findByMember_Id(loggedInMemberId);
+
+        // 로그인한 회원의 위시리스트 안에 있는 제품 저장
+        List<Product> loggedInMemberWishlistProducts = loggedInMemberWishlist.stream()
+                .map(Wishlist::getProduct)
+                .collect(Collectors.toList());
+
+        System.out.println("** 로그인한 회원의 위시리스트 제품: ");
+        loggedInMemberWishlistProducts.forEach(product -> System.out.println(product.getId()));
+
+        // 로그인 한 회원의 태그 정보
+        Tag loggedInMemberTag = loggedInMember.get().getTag();
+
+        // 로그인 한 회원의 태그 정보를 List<Tag>형태에 저장
+        List<Tag> loggedInTagList = new ArrayList<>();
+        loggedInTagList.add(loggedInMemberTag);
+
+        // 다른 회원 중에서 현재 로그인한 회원과 성별이 같고 비슷한 연령대의 가중치 가져오기
+        Map<Long, Integer> memberWeights = findSimilarMemberWeights(loggedInTagList, loggedInMemberId);
+
+        // 다른 회원의 위시리스트에서 현재 로그인한 회원의 위시리스트에 있는 제품과 겹치지 않는 제품 가져오기
+        List<Product> recommendedProducts = findNonOverlappingProducts(memberWeights, loggedInMemberWishlistProducts, loggedInMemberId);
+        System.out.println("=======> 최종 결과: ");
+        recommendedProducts.forEach(product -> System.out.println(product.getId()));
+
+        return recommendedProducts;
+    }
+
+    // 동일한 성별 + 비슷한 연령대 회원의 가중치 찾기
+    private Map<Long, Integer> findSimilarMemberWeights(List<Tag> loggedInTagList, Long loggedInMemberId) {
+
+//        // 로그인 한 회원이 아닌 다른 회원 중에서 현재 로그인한 회원과 태그가 두 개 이상 겹치는 경우의 회원 ID와 가중치 가져오기
+//        List<Long> memberIds = wishlistRepository.findDistinctMemberIds(loggedInMemberId);  // wishlist에 추가한 게 있는 회원의 Id만 불러옴
+
+        Optional<Member> loginMember = memberRepository.findById(loggedInMemberId);
+
+        // 로그인 한 회원과 동일한 성별, -5 ~ +5 사이의 나이를 가진 회원 ID 가져오기
+        List<Long> memberIds = memberRepository.findSimilarMembers(loginMember.get().getGender(),
+                loginMember.get().getAge() - 5,
+                loginMember.get().getAge() + 5,
+                loggedInMemberId);
+
+        // 순서대로 다른 회원의 memberId값, 가중치 저장됨
+        Map<Long, Integer> memberWeights = new HashMap<>();
+
+        for (Long memberId : memberIds) {
+            if (!memberId.equals(loggedInMemberId)) {
+                Optional<Member> otherMember = memberRepository.findById(memberId);
+                Tag otherMemberTag = otherMember.get().getTag();
+
+                // otherMemberTagList 초기화
+                List<Tag> otherMemberTagList = new ArrayList<>();
+                otherMemberTagList.add(otherMemberTag);
+
+                // stream 연산 및 tagCount 로직 수행
+                long tagCount = loggedInTagList.stream()
+                        .flatMapToLong(loggedInTag ->
+                                otherMemberTagList.stream()
+                                        .mapToLong(findOtherMemberTag ->
+                                                (Objects.equals(loggedInTag.getSkinType(), findOtherMemberTag.getSkinType()) ? 1 : 0) +
+                                                        (Objects.equals(loggedInTag.getSkinColor(), findOtherMemberTag.getSkinColor()) ? 1 : 0) +
+                                                        (Objects.equals(loggedInTag.getPcolor(), findOtherMemberTag.getPcolor()) ? 1 : 0)
+                                        )
+                        )
+                        .sum();
+
+
+                memberWeights.put(memberId, (int) tagCount);
+            }
+        }
+        return memberWeights;
+    }
 }
 
