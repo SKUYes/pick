@@ -30,7 +30,7 @@ public class MainController {
         if(session.getAttribute("loginMember") != null){
             MemberResDto loginMember = (MemberResDto)session.getAttribute("loginMember");
 //        System.out.println("현재 로그인한 회원: " + loginMember.getMemberId());
-            
+
             // 설문 기반 추천
             List<Product> recommendProducts = recommendationService.getRecommendedProductsByAgeAndGender(loginMember.getMemberId());
             model.addAttribute("wishlistItemsByGenderAndAge", recommendProducts);

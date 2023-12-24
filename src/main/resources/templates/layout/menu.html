@@ -36,7 +36,7 @@
                             </ul>
                             <ul class="user-login" th:if="${session.loginMember != null}">
                                 <li>
-                                    <a th:href="@{/member/update}">마이 페이지</a>
+                                    <a th:href="@{/member/update}">회원 정보</a>
                                 </li>
                                 <li>
                                     <form th:action="@{/member/logout}" method="post">
@@ -75,9 +75,10 @@
                                         <div class="select-position">
                                             <select class="form-control" id="searchType" name="searchType">
                                                 <option selected="">All</option>
-                                                <option value="subCategoryId">서브 카테고리</option>
-                                                <option value="textureId">Texture</option>
-                                                <option value="tagId">Tag</option>
+                                                <option value="productName">제품명</option>
+                                                <option value="skinType">피부타입</option>
+                                                <option value="skinColor">피부호수</option>
+                                                <option value="pColor">퍼스널컬러</option>
                                             </select>
                                         </div>
                                     </div>
@@ -100,7 +101,7 @@
                             <div class="navbar-cart">
                                 <div class="cart-items" th:if="${session.loginMember != null}">
                                     <span>위시 리스트 </span>
-                                    <a href="/wishlist/view" class="main-btn">
+                                    <a th:href="@{/wishlist/view}" class="main-btn">
                                         <i class="lni lni-heart"></i>
                                     </a>
                                 </div>

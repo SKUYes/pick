@@ -41,23 +41,18 @@ public class ProductController {
         return "product/productList";
     }
 
+    // 검색
     @GetMapping("/list")
     public String readAllProduct(
             @RequestParam(required = false) String searchType,
             @RequestParam(required = false) String searchValue,
-            @RequestParam(defaultValue = "0") int page, // 현재 페이지. 기본값 0
-            @RequestParam(defaultValue = "10") int size, // 한 페이지에 보여질 아이템 수. 기본값 10
             Model model) {
-        // Pageable 객체 생성
-        Pageable pageable = PageRequest.of(page, size);
 
-        Page<ProductResDto> productListBySearch = productService.searchProducts(searchType, searchValue, pageable);
+        List<ProductResDto> productListBySearch = productService.searchProducts(searchType, searchValue);
         System.out.println("----------productList: " + productListBySearch);
 
-        // productListBySearch의 getContent()를 사용하여 List<ProductResDto>를 가져오는 대신, getContent()를 사용하지 않고 바로 사용할 수 있도록 수정
+        // productListBySearch의 getContent()를 사용하여 List<ProductResDto>를 가져옴
         model.addAttribute("productListBySearch", productListBySearch);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", productListBySearch.getTotalPages());
 
         return "product/search-list";
     }

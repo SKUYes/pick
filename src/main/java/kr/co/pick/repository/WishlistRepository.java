@@ -33,9 +33,6 @@ public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
     @Query("SELECT DISTINCT w.member.id FROM Wishlist w WHERE w.member.id <> :loggedInMemberId")
     List<Long> findDistinctMemberIds(@Param("loggedInMemberId") Long loggedInMemberId);
 
-    // member_id를 불러와서 위시리스트에 추가한 제품 찾기
-    @Query("SELECT (w.product.id, w.product.name) FROM Wishlist w WHERE w.member.id = :memberId")
-    List<ProductResDto> findProductsByMemberId(Long memberId);
-
-
+    @Transactional
+    void deleteByMemberId(Long memberId);
 }

@@ -62,7 +62,7 @@
 </div>
 <!-- End Breadcrumbs -->
 
-<!-- Start Account Register Area -->
+<!-- Start Account Update Area -->
 <div class="account-login section">
     <div class="container">
         <div class="row">
@@ -72,7 +72,7 @@
                         <h3>회원 정보 수정</h3>
                         <p style="margin-bottom: 10px;">회원 정보 수정 페이지 입니다.</p>
                     </div>
-                    <form id="joinMember" class="row" th:action="@{/member/update}" th:object="${memberReqDto}" th:method="post">
+                    <form id="updateMember" class="row" th:action="@{/member/update}" th:object="${memberReqDto}" th:method="post">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="reg-id">아이디</label>
@@ -146,12 +146,16 @@
                             <button style="margin-top: 10px;" class="btn" type="submit">정보수정</button>
                         </div>
                     </form>
+                </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <div>
+                    <h6>회원 탈퇴</h6>
+                    <a th:href="@{/member/delete}">회원 탈퇴 하기</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- End Account Register Area -->
+<!-- End Account Update Area -->
 
 <!-- Start Footer Area -->
 <th:block th:replace="~{/layout/footer :: setContent(~{this::content} )}">
@@ -173,19 +177,28 @@
 </body>
 <script>
     $(document).ready(function () {
-        $("form").on("submit", function (event) {
+
+        $("#updateMember").on("submit", function (event) {
             event.preventDefault(); // 폼 제출을 방지하여 기본 동작을 중단합니다.
 
-            // Ajax를 사용하여 서버에 요청을 보냅니다.
+            // 피부 색상, 피부 타입, 퍼스널 컬러 값 얻기
+            var skinColor = $("#skin_color").val();
+            var skinType = $("#skin_type").val();
+            var pcolor = $("#pcolor").val();
+
+            // Ajax를 사용하여 서버에 요청 수행
             $.ajax({
-                url: $(this).attr("action"),
-                method: "POST",
-                data: $(this).serialize(),
-                success: function (response) {
+                type: "POST",
+                url: "/tag/input",
+                contentType: "application/json;charset=UTF-8",
+                data: JSON.stringify({ skinColor: skinColor, skinType: skinType, pcolor: pcolor }),
+                success: function(response) {
+                    // 얻어온 TagDB의 PK를 hidden input으로 추가
+                    $("#updateMember").append('<input type="hidden" name="tagId" value="' + response + '">');
+                    // 폼 제출
+                    $("#updateMember").unbind('submit').submit();
                     // 성공적인 응답 처리
                     alert("회원정보 수정이 완료되었습니다.");
-                    // 홈 페이지로 리디렉션
-                    window.location.href = "/home";
                 },
                 error: function (xhr, status, error) {
                     if (xhr.status === 500) {

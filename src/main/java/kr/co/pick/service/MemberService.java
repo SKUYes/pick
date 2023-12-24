@@ -6,6 +6,7 @@ import kr.co.pick.entity.Member;
 import kr.co.pick.entity.Tag;
 import kr.co.pick.repository.MemberRepository;
 import kr.co.pick.repository.TagRepository;
+import kr.co.pick.repository.WishlistRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-
+    private final WishlistRepository wishlistRepository;
     private final TagRepository tagRepository;
 
     // 회원 생성
@@ -70,11 +71,12 @@ public class MemberService {
     }
 
     // 아이디 값으로 회원 삭제
-    public void deleteMember(String identity) {
-        Optional<Member> member = memberRepository.findByIdentity(identity);
+    public void deleteMember(Long member_id) {
+        Optional<Member> member = memberRepository.findById(member_id);
 
         isMember(member);
 
+        wishlistRepository.deleteByMemberId(member_id);
         memberRepository.delete(member.get());
     }
 

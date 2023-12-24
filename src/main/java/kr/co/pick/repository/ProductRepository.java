@@ -14,19 +14,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findAllBySubCategory_Id(Long subCategoryId);
 
-//    List<Product> findAllByTexture(Long textureId);
-//
-//    List<Product> findAllByTag(Long tagId);
-
     // 검색 옵션 없이 모든 제품을 페이징 처리하여 반환
     Page<Product> findAll(Pageable pageable);
 
-    Page<Product> findAllBySubCategory_Id(Long subCategoryId, Pageable pageable);
-
-    Page<Product> findAllByTexture_Id(Long textureId, Pageable pageable);
-
-    Page<Product> findAllByTag_Id(Long tagId, Pageable pageable);
-
     @Query("SELECT DISTINCT p FROM Product p INNER JOIN FETCH p.tag")
     List<Product> findAllWithTags();
+
+
+    // 검색 로직에 사용
+    List<Product> findByTag_SkinType(String skinType);
+    List<Product> findByTag_SkinColor(String skinColor);
+    List<Product> findByTag_pcolor(String pcolor);
+    List<Product> findByNameContainingIgnoreCase(String name);
+
 }

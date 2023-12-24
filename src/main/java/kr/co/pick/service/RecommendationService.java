@@ -98,7 +98,7 @@ public class RecommendationService {
         List<Product> recommendedProducts = findNonOverlappingProducts(memberWeights, loggedInMemberWishlistProducts, loggedInMemberId);
         System.out.println("=======> 최종 결과: ");
         recommendedProducts.forEach(product -> System.out.println(product.getId()));
-        
+
         return recommendedProducts;
     }
 
@@ -176,7 +176,7 @@ public class RecommendationService {
         }
 
         System.out.println("loggedInUserWishlistProductIds" + loggedInUserWishlistProductIds);
-        
+
         // 추천 제품을 저장할 리스트
         List<Product> recommendedProducts = new ArrayList<>();
 
@@ -362,4 +362,3 @@ public class RecommendationService {
         return memberWeights;
     }
 }
-

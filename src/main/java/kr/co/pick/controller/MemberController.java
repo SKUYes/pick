@@ -2,12 +2,10 @@ package kr.co.pick.controller;
 
 import jakarta.servlet.http.HttpSession;
 import kr.co.pick.dto.request.MemberReqDto;
-import kr.co.pick.dto.request.TagReqDto;
 import kr.co.pick.dto.response.MemberResDto;
 import kr.co.pick.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -53,7 +51,7 @@ public class MemberController {
     public String logout(HttpSession session) {
         session.removeAttribute("loginMember");
 
-        return "redirect:/home"; // 로그아웃 후 홈 페이지로 리다이렉트
+        return "redirect:/home";
     }
 
     @GetMapping("/update")
@@ -72,14 +70,13 @@ public class MemberController {
         return "redirect:/home";
     }
 
-//    @GetMapping("/read/{identity}")
-//    public String readMember(@PathVariable String identity, Model model) {
-//        MemberResDto memberResDto = memberService.readMember(identity);
-//
-//        model.addAttribute("member", memberResDto);
-//
-//        return "member/read"; // Thymeleaf 파일 이름
-//    }
+    @GetMapping("/delete")
+    public String delete(@SessionAttribute("loginMember") MemberResDto loginMember, HttpSession session){
+        memberService.deleteMember(loginMember.getMemberId());
 
+        session.removeAttribute("loginMember");
+
+        return "/home";
+    }
 
 }

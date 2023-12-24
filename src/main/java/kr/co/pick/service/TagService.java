@@ -1,6 +1,5 @@
 package kr.co.pick.service;
 
-import kr.co.pick.dto.request.TagReqDto;
 import kr.co.pick.entity.Tag;
 import kr.co.pick.repository.TagRepository;
 import lombok.RequiredArgsConstructor;

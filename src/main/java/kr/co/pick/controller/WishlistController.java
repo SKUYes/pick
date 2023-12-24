@@ -59,7 +59,7 @@ public class WishlistController {
         wishlistService.deleteItem(productId, loginMemberId);
         return "redirect:/wishlist/view";
     }
-    
+
     // 위시리스트에 추가
     @GetMapping("/add/{productId}")
     public String addToWishlist(@PathVariable Long productId, HttpSession session, HttpServletRequest request, RedirectAttributes redirectAttributes){
@@ -89,8 +89,6 @@ public class WishlistController {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:" + referer;
         }
-
-
 
     }
 }
