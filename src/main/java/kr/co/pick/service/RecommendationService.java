@@ -208,12 +208,12 @@ public class RecommendationService {
     }
 
     // 태그 가중치 찾기
-    private List<Long> findTagWeights(Tag loggedInMemberTag) {
+    private List<Long> findTagWeights(Tag tag) {
 
         // 태그 정보
-        String skinType = loggedInMemberTag.getSkinType();
-        String skinColor = loggedInMemberTag.getSkinColor();
-        String pColor = loggedInMemberTag.getPcolor();
+        String skinType = tag.getSkinType();
+        String skinColor = tag.getSkinColor();
+        String pColor = tag.getPcolor();
 
         // 가중치가 2 이상인 tagId 값
         List<Long> tagWeights = new ArrayList<>();
@@ -222,17 +222,17 @@ public class RecommendationService {
         List<Tag> allTagList = tagRepository.findAll();
 
         // tagCount 로직 수행
-        for (Tag tag : allTagList) {
+        for (Tag now_tag : allTagList) {
             int tagCount = 0;
 
             // 각 필드별로 값이 같으면 해당 필드의 일치 개수를 가중치로 더함
-            tagCount += (Objects.equals(skinType, tag.getSkinType()) ? 1 : 0)
-                    + (Objects.equals(skinColor, tag.getSkinColor()) ? 1 : 0)
-                    + (Objects.equals(pColor, tag.getPcolor()) ? 1 : 0);
+            tagCount += (Objects.equals(skinType, now_tag.getSkinType()) ? 1 : 0)
+                    + (Objects.equals(skinColor, now_tag.getSkinColor()) ? 1 : 0)
+                    + (Objects.equals(pColor, now_tag.getPcolor()) ? 1 : 0);
 
             // 겹치는 필드 2개 이상인 제품에 대해서만 추천 하기 위해
             if(tagCount >= 2) {
-                tagWeights.add(tag.getId());
+                tagWeights.add(now_tag.getId());
             }
         }
 
